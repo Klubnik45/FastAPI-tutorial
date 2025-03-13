@@ -1,0 +1,33 @@
+*{
+    margin: 0; /*внешний отступ*/
+    padding: 0; /*внутренний отступ*/
+    box-sizing: border-box; /*размер рамки входит размер коробки(контейнера)*/
+    text-decoration: none; /*отключаем подчеркивание, в частности под ссылками*/
+    list-style: none; /*отключаем точки(позиции списка)*/
+}
+
+body {
+    background-color: brown;
+}
+
+.hide-page{
+    display: none;
+}
+
+#add-book{
+    position: relative;
+}
+
+#add-book-form{
+    position: absolute;
+    top: 0;
+    left: 0;
+    background-color: rgba(0, 0, 0, 0.445);
+    width: 100vw;
+    height: 100vh;
+}
+
+#closeBtn{
+    background-color: white;
+    padding: 1rem;
+}

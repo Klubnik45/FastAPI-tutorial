@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/static/style.css">
+    <title>Houme page</title>
+    <script src="/static/script.js" defer></script>
+</head>
+<body>
+    <h1>Welcome!</h1>
+    <button id="addBtn" hx-get="/books/add" hx-swap="afterbegin" hx-target="#add-book-form" hx-trigger="click">Add book</button>
+    <div id="add-book">
+        <form id="add-book-form" hx-post="/books/add" hx-swap="innerHT" hx-target="#book-list" hx-trigger="click"></form>
+    </div>
+    <ul id="book-list" hx-get="/books" hx-swap="innerHTML" hx-trigger="load">
+    </ul>
+    <script src="https://unpkg.com/htmx.org@2.0.4" integrity="sha384-HGfztofotfshcF7+8n44JQL2oJmowVChPTg48S+jvZoztPfvwD79OC/LTtG6dMp+" crossorigin="anonymous"></script>
+</body>
+</html>

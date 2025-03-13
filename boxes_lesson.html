@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        *{
+            margin: 0; /*внешний отступ*/
+            padding: 0; /*внутренний отступ*/
+            box-sizing: border-box; /*размер рамки входит размер коробки(контейнера)*/
+            text-decoration: none; /*отключаем подчеркивание, в частности под ссылками*/
+            list-style: none; /*отключаем точки(позиции списка)*/
+        }
+        h1, div, article, section, p, nav, ul, li, aside, a, span, header, footer, picture {border: solid 2px black}
+    </style>
+</head>
+<body>
+    <h1>Box lesson</h1>
+    <div>box_1 DIV</div>
+    <article>box_2 ARTICLE</article>
+    <section>box_3 SECTION</section>
+    <p>box_4 P</p>
+    <nav>box_5 NAV</nav>
+    <ul>box_6 UL
+        <li>apple</li>
+        <li>orange</li>
+        <li>cherry</li>
+    </ul>
+    <aside>box_7 ASIDE</aside>
+    <a href="#">back</a> <!--ссылка-->
+    <a href="#">next</a>
+    <span>YES</span> <!--контейнер универмальный, когда не знаешь какой использовать контейнер-->
+    <button>Click me</button> <!--кнопка-->
+    <img src="https://avatars.mds.yandex.net/i?id=d37695f18c788f4c27ae3f39f620c222b38d9e5e-8427413-images-thumbs&n=13" alt="Masha">
+    <header>Hello</header>
+    <footer>By</footer>
+    <picture>PICTURE
+        <source media="(min-width: 750px)"
+        srcset="https://avatars.mds.yandex.net/i?id=8119c196172f14d0527da61cc06f2079f8836be2-8497596-images-thumbs&n=13">
+        <img src="https://avatars.mds.yandex.net/i?id=d37695f18c788f4c27ae3f39f620c222b38d9e5e-8427413-images-thumbs&n=13" alt="Masha">
+    </picture>
+</body>
+</html>

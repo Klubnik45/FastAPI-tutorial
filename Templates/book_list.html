@@ -1,0 +1,10 @@
+{%for book in books%}
+<li>
+    <h3>{{book.title}}</h3>
+    <p>{{book.author}}</p>
+    <p>{{book.bookID}}</p>
+    <button hx-get="/books/update" hx-swap="afterbegin" hx-target="#update-book-form" hx-trigger="click">Update book</button>
+    <button hx-delete="/books/delete/{{book.bookID}}" hx-swap="innerHTML" hx-target="#book-list" hx-trigger="click">Delete book</button>
+    <form id="update-book-form" hx-put="/books/update/{{book.bookID}}" hx-swap="innerHTML" hx-target="#book-list"></form>
+</li>
+{%endfor%}
