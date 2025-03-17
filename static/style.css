@@ -14,11 +14,11 @@ body {
     display: none;
 }
 
-#add-book{
+#add-book, [id^="update-book"]{
     position: relative;
 }
 
-#add-book-form{
+#add-book-form, [id^="update-book-form"]{
     position: absolute;
     top: 0;
     left: 0;

@@ -5,5 +5,15 @@
 <input type="text" name="num_pages" placeholder="book num_pages">
 <input type="text" name="publication_date" placeholder="book publication_date">
 <input type="text" name="publisher" placeholder="book publisher">
-<button type="submit">Save</button>
+<button id="saveBtn" type="submit">Save</button>
 <span id="closeBtn">Close</span>
+<script>
+    closeBtn = document.querySelector("#closeBtn");
+    saveBtn = document.querySelector("#saveBtn");
+    closeBtn.addEventListener("click", function(event){
+        event.target.parentElement.parentElement.classList.add("hide-page");
+    });
+    saveBtn.addEventListener("click", function(event){
+        event.target.parentElement.parentElement.classList.add("hide-page");
+    });
+    </script>

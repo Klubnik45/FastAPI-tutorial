@@ -9,12 +9,26 @@
 </head>
 <body>
     <h1>Welcome!</h1>
-    <button id="addBtn" hx-get="/books/add" hx-swap="afterbegin" hx-target="#add-book-form" hx-trigger="click">Add book</button>
+    <button id="addBtn" hx-get="/books/add" hx-swap="autoHTML" hx-target="#add-book-form" hx-trigger="click">Add book</button>
     <div id="add-book">
-        <form id="add-book-form" hx-post="/books/add" hx-swap="innerHT" hx-target="#book-list" hx-trigger="click"></form>
+        <form id="add-book-form" hx-post="/books/add" hx-swap="innerHTML" hx-target="#book-list" hx-on:htmx:after-request="this.reset()"></form>
     </div>
     <ul id="book-list" hx-get="/books" hx-swap="innerHTML" hx-trigger="load">
     </ul>
+    <script>
+        setTimeout(() => {
+            updatePage = document.querySelectorAll("#book-list li form");
+            updatePage.forEach(element => {
+                element.classList.add("hide-page");
+                element.parentElement.parentElement.firstChild.addEventListener("click", function(){
+                    element.classList.remove("hide-page");
+                    console.log("Click");
+                });
+            });
+            
+            console.log(updatePage);
+        }, 1500);
+    </script>
     <script src="https://unpkg.com/htmx.org@2.0.4" integrity="sha384-HGfztofotfshcF7+8n44JQL2oJmowVChPTg48S+jvZoztPfvwD79OC/LTtG6dMp+" crossorigin="anonymous"></script>
 </body>
 </html>
