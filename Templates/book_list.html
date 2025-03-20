@@ -3,8 +3,8 @@
     <h3>{{book.title}}</h3>
     <p>{{book.author}}</p>
     <p>{{book.bookID}}</p>
-    <button hx-get="/books/update" hx-swap="afterbegin" hx-target="#update-book-form{{book.bookID}}" hx-trigger="click">Update book</button>
-    <button hx-delete="/books/delete/{{book.bookID}}" hx-swap="autoHTML" hx-target="#book-list" hx-trigger="click">Delete book</button>
+    <button hx-get="/books/update" hx-swap="innerHTML" hx-target="#update-book-form{{book.bookID}}" hx-trigger="click">Update book</button>
+    <button hx-delete="/books/delete/{{book.bookID}}" hx-swap="innerHTML" hx-target="#book-list" hx-trigger="click">Delete book</button>
     <div id="update-book{{book.bookID}}">
         <form id="update-book-form{{book.bookID}}" hx-put="/books/update/{{book.bookID}}" hx-swap="innerHTML" hx-target="#book-list"></form>
     </div>
