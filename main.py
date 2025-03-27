@@ -67,7 +67,7 @@ async def update_book(request: Request, book_id:str, title: Annotated[str, Form(
 
 @app.get("/books/update", response_class= HTMLResponse)
 async def update_book_form(request: Request, hx_request: Annotated[str | None, Header()] = None):
-    return templates.TemplateResponse(request= request, name="add_book.html")
+    return templates.TemplateResponse(request= request, name="update_book.html")
 
 
 @app.delete("/books/delete/{book_id}", response_class= HTMLResponse)

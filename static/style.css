@@ -31,3 +31,7 @@ body {
     background-color: white;
     padding: 1rem;
 }
+
+.show-page{
+    display: flex;
+}

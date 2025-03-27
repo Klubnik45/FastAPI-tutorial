@@ -8,16 +8,21 @@
 <button id="saveBtn" type="submit">Save</button>
 <span>Close</span>
 <script>
-    addCloseBtn = document.querySelector("#add-book-form span");      
-    addSaveBtn = document.querySelector("#add-book-form button");
-    console.log(closeBtn, addCloseBtn)
+    closeBtn = document.querySelectorAll("#book-list li form span");
+      
+    saveBtn = document.querySelectorAll("#book-list li form button");
+    console.log(closeBtn, saveBtn)
 
-    addCloseBtn.addEventListener("click", function(event){
-        event.target.parentElement.parentElement.classList.add("hide-page");
+    closeBtn.forEach(element => {
+        element.addEventListener("click", function(event){
+        event.target.parentElement.classList.add("hide-page");
+    });
     });
 
-    addSaveBtn.addEventListener("click", function(event){
-        event.target.parentElement.parentElement.classList.add("hide-page");
+    saveBtn.forEach(element => {
+        element.addEventListener("click", function(event){
+        event.target.parentElement.classList.add("hide-page");
+    });
     });
 
 </script>
