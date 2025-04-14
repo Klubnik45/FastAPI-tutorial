@@ -6,9 +6,13 @@
 <input type="text" name="publication_date" placeholder="book publication_date">
 <input type="text" name="publisher" placeholder="book publisher">
 <button id="saveBtn" type="submit">Save</button>
-<span>Close</span>
+<span
+    hx-get="/books"
+    hx-trigger="click"
+    hx-on::after-request="this.reset(); event.target.parentElement.classList.add('hide-page');">Close</span>
+
 <script>
-    addCloseBtn = document.querySelector("#add-book-form span");      
+    /*addCloseBtn = document.querySelector("#add-book-form span");      
     addSaveBtn = document.querySelector("#add-book-form button");
     console.log(closeBtn, addCloseBtn)
 
@@ -18,6 +22,5 @@
 
     addSaveBtn.addEventListener("click", function(event){
         event.target.parentElement.parentElement.classList.add("hide-page");
-    });
-
+    });*/
 </script>

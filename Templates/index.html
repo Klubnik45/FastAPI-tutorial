@@ -8,13 +8,32 @@
     <script src="/static/script.js" defer></script>
 </head>
 <body>
-    <h1>Welcome!</h1>
-    <button id="addBtn" hx-get="/books/add" hx-swap="autoHTML" hx-target="#add-book-form" hx-trigger="click">Add book</button>
+    <header id="global-header">
+        <h1>Welcome my friend!</h1>
+        <button
+            id="addBtn"
+            hx-get="/books/add"
+            hx-target="#add-book-form"
+            hx-trigger="click">Add book</button>
+    </header>
+
     <div id="add-book">
-        <form id="add-book-form" hx-post="/books/add" hx-swap="innerHTML" hx-target="#book-list" hx-on:htmx:after-request="this.reset()"></form>
+        <form
+            id="add-book-form"
+            class="hide-page"
+            hx-post="/books/add"
+            hx-swap="innerHTML"
+            hx-target="#book-list"
+            hx-on::after-request="this.reset(); event.target.classList.add('hide-page');"
+            hx-on::after-settle="event.target.classList.remove('hide-page');"></form>
     </div>
+
     <ul id="book-list" hx-get="/books" hx-swap="innerHTML" hx-trigger="load">
     </ul>
+
+    <footer id="global-footer">
+        <p>&copy; 2025</p>
+    </footer>
 
     <script>
         /*function hide(target){
@@ -28,7 +47,7 @@
         const config = {childList: true, subtree: true}
         let target = document.getElementById("book-list");
         const ulobserver = new MutationObserver(hide);
-        ulobserver.observe(target, config);*/
+        ulobserver.observe(target, config);
               
 
         //setTimeout(() => {
@@ -46,7 +65,7 @@
             console.log(addPage);
             //addPage.classList.add("hide-page");
             //updatePage.classList.add("hide-page");
-        //}, 1500);
+        //}, 1500);*/
     </script>
 
     <script src="https://unpkg.com/htmx.org@2.0.4" integrity="sha384-HGfztofotfshcF7+8n44JQL2oJmowVChPTg48S+jvZoztPfvwD79OC/LTtG6dMp+" crossorigin="anonymous"></script>

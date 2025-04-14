@@ -1,12 +1,33 @@
 {%for book in books%}
-<li>
+<li class="book">
+    <div class="book-cover">
+        <div>Book</div>
+    </div>
     <h3>{{book.title}}</h3>
     <p>{{book.author}}</p>
     <p>{{book.bookID}}</p>
-    <button hx-get="/books/update" hx-swap="innerHTML" hx-target="#update-book-form{{book.bookID}}" hx-trigger="click">Update book</button>
-    <button hx-delete="/books/delete/{{book.bookID}}" hx-swap="innerHTML" hx-target="#book-list" hx-trigger="click">Delete book</button>
+    <button
+        class="update-btn"
+        hx-get="/books/update"
+        hx-swap="innerHTML"
+        hx-target="#update-book-form{{book.bookID}}"
+        hx-trigger="click">Update book</button>
+
+    <button
+        hx-delete="/books/delete/{{book.bookID}}"
+        hx-swap="innerHTML"
+        hx-target="#book-list"
+        hx-trigger="click"
+        hx-confirm="Are you sure you wish to delete this book?">Delete book</button>
+
     <div id="update-book{{book.bookID}}">
-        <form id="update-book-form{{book.bookID}}" class="hide-page" hx-put="/books/update/{{book.bookID}}" hx-swap="innerHTML" hx-target="#book-list"></form>
+        <form
+            id="update-book-form{{book.bookID}}"
+            class="hide-page"
+            hx-put="/books/update/{{book.bookID}}"
+            hx-target="#book-list"
+            hx-on::after-request="this.reset(); event.target.classList.add('hide-page');"
+            hx-on::after-settle="event.target.classList.remove('hide-page');"></form>
     </div>
 </li>
 {%endfor%}

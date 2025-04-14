@@ -1,13 +1,66 @@
+:root {
+    --black: #000000ff;
+    --bole: #764134ff;
+    --chamoisee: #ad8350ff;
+    --white: #ffffffff;
+    --french-gray: #c9cbcfff;
+}
+
+
 *{
     margin: 0; /*внешний отступ*/
     padding: 0; /*внутренний отступ*/
     box-sizing: border-box; /*размер рамки входит размер коробки(контейнера)*/
     text-decoration: none; /*отключаем подчеркивание, в частности под ссылками*/
     list-style: none; /*отключаем точки(позиции списка)*/
+    line-height: 1.5;
 }
 
 body {
-    background-color: brown;
+    background-color: var(--french-gray);
+    width: 100vw;
+    min-height: 100vh;
+    display: flex;
+    flex-flow: column;
+    justify-content: space-between;
+    align-items: center;
+}
+
+#global-header, #global-footer{
+    background-color: var(--chamoisee);
+    width: 100%;
+    color: var(--white);
+    text-align: center;
+}
+
+#global-header{
+    padding: 2.5vmax 5vmax;
+}
+
+#global-footer{
+    padding: 1.5vmax 0;
+}
+
+#book-list{
+    background-color: var(--white);
+    color: var(--black);
+    width: 90%;
+    min-height: 50vh;
+    padding: 1.5vmax 2.5vmax;
+    display: flex;
+    justify-content: space-evenly;
+    flex-wrap: wrap;
+    margin: 1vmax 0;
+}
+
+.book{
+    margin: 1vmin 2vmin;
+    margin-bottom: 2.5vh;
+    width: 25%;
+    display: flex;
+    flex-flow: column;
+    align-items: center;
+    text-align: center;
 }
 
 .hide-page{
@@ -34,4 +87,41 @@ body {
 
 .show-page{
     display: flex;
+}
+
+.book-cover{
+    width: 12.5vmin;
+    height: 17.5vmin;
+    background-color: darkgreen;
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 6px -3px 4px rgba(0, 0, 0, 0.450);
+    margin-bottom: 1.5vh;
+}
+
+.book-cover>div{
+    border: solid 1px white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 10vmin;
+    height: 15vmin;
+}
+
+li:nth-child(even) .book-cover{
+    background-color: blue;
+}
+
+li:nth-child(3n) .book-cover{
+    background-color: red;
+}
+
+li:nth-child(odd) .book-cover{
+    background-color: greenyellow;
+}
+
+.book h3{
+    line-height: 1.1;
 }

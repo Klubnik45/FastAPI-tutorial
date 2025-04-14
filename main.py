@@ -24,6 +24,16 @@ class Book:
 
 fake_db = [Book("Harry Potter and the Half-Blood Prince (Harry Potter  #6)", "J.K. Rowling", "0439785960", "eng", 652, "9/16/2006", "Scholastic Inc."),
            Book("The Power of One: The Solo Play for Playwrights  Actors  and Directors", "Louis E. Catron", "0325001537", "eng", 240, "2/7/2000", "Heinemann Drama"),
+           Book("Dinner with Anna Karenina", "Gloria Goldreich", "0778322270", "eng", 360, "1/28/2006", "Mira Books"), Book("Harry Potter and the Half-Blood Prince (Harry Potter  #6)", "J.K. Rowling", "0439785960", "eng", 652, "9/16/2006", "Scholastic Inc."),
+           Book("The Power of One: The Solo Play for Playwrights  Actors  and Directors", "Louis E. Catron", "0325001537", "eng", 240, "2/7/2000", "Heinemann Drama"),
+           Book("Dinner with Anna Karenina", "Gloria Goldreich", "0778322270", "eng", 360, "1/28/2006", "Mira Books"), Book("Harry Potter and the Half-Blood Prince (Harry Potter  #6)", "J.K. Rowling", "0439785960", "eng", 652, "9/16/2006", "Scholastic Inc."),
+           Book("The Power of One: The Solo Play for Playwrights  Actors  and Directors", "Louis E. Catron", "0325001537", "eng", 240, "2/7/2000", "Heinemann Drama"),
+           Book("Dinner with Anna Karenina", "Gloria Goldreich", "0778322270", "eng", 360, "1/28/2006", "Mira Books"), Book("Harry Potter and the Half-Blood Prince (Harry Potter  #6)", "J.K. Rowling", "0439785960", "eng", 652, "9/16/2006", "Scholastic Inc."),
+           Book("The Power of One: The Solo Play for Playwrights  Actors  and Directors", "Louis E. Catron", "0325001537", "eng", 240, "2/7/2000", "Heinemann Drama"),
+           Book("Dinner with Anna Karenina", "Gloria Goldreich", "0778322270", "eng", 360, "1/28/2006", "Mira Books"), Book("Harry Potter and the Half-Blood Prince (Harry Potter  #6)", "J.K. Rowling", "0439785960", "eng", 652, "9/16/2006", "Scholastic Inc."),
+           Book("The Power of One: The Solo Play for Playwrights  Actors  and Directors", "Louis E. Catron", "0325001537", "eng", 240, "2/7/2000", "Heinemann Drama"),
+           Book("Dinner with Anna Karenina", "Gloria Goldreich", "0778322270", "eng", 360, "1/28/2006", "Mira Books"), Book("Harry Potter and the Half-Blood Prince (Harry Potter  #6)", "J.K. Rowling", "0439785960", "eng", 652, "9/16/2006", "Scholastic Inc."),
+           Book("The Power of One: The Solo Play for Playwrights  Actors  and Directors", "Louis E. Catron", "0325001537", "eng", 240, "2/7/2000", "Heinemann Drama"),
            Book("Dinner with Anna Karenina", "Gloria Goldreich", "0778322270", "eng", 360, "1/28/2006", "Mira Books")]
 
 @app.get("/", response_class= HTMLResponse) #Запрос на получение информации (отправляем get запрос)
@@ -40,7 +50,7 @@ async def list_books(request: Request, hx_request: Annotated[str | None, Header(
 
 @app.get("/books/add", response_class= HTMLResponse)
 async def add_book_form(request: Request, hx_request: Annotated[str | None, Header()] = None):
-    return templates.TemplateResponse(request= request, name="add_book.html")
+    return templates.TemplateResponse(request= request, name="process_book.html")
 
 
 @app.post("/books/add", response_class= HTMLResponse)
@@ -67,7 +77,7 @@ async def update_book(request: Request, book_id:str, title: Annotated[str, Form(
 
 @app.get("/books/update", response_class= HTMLResponse)
 async def update_book_form(request: Request, hx_request: Annotated[str | None, Header()] = None):
-    return templates.TemplateResponse(request= request, name="update_book.html")
+    return templates.TemplateResponse(request= request, name="process_book.html")
 
 
 @app.delete("/books/delete/{book_id}", response_class= HTMLResponse)
