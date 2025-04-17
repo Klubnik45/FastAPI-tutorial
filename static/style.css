@@ -17,6 +17,7 @@
 }
 
 body {
+    position: relative;
     background-color: var(--french-gray);
     width: 100vw;
     min-height: 100vh;
@@ -68,14 +69,58 @@ body {
 }
 
 #add-book, [id^="update-book"]{
-    position: relative;
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+#add-book-form{
+    background-color: rgb(81, 143, 109);
+    margin: 0 auto;
+    padding-top: 10vh;
+}
+
+#add-book-form input{
+    display: block;
+    margin: 2.5vh auto;
+    width: 20%;
+    height: 4.5vh;
+    border-radius: 10px;
+    text-align: center;
+    border: solid 2px rgb(36, 110, 41);
+    background-color: rgb(153, 168, 154);
+}
+
+#add-book-form button{
+    display: block;
+    margin: 5vh auto;
+    border-radius: 10px;
+    text-align: center;
+    padding: 1vw 3vw;
+    text-transform: uppercase;
+}
+
+#add-book-form span{
+    position: absolute;
+    right: 2.5vw;
+    top: 2.5vw;
+    font-weight: bold;
+    font-size: 125%;
+    border-radius: 50%;
+    width: 3vmax;
+    height: 3vmax;
+    border: solid 2px black;
+    padding: 1vmax;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 #add-book-form, [id^="update-book-form"]{
     position: absolute;
     top: 0;
     left: 0;
-    background-color: rgba(0, 0, 0, 0.445);
     width: 100vw;
     height: 100vh;
 }

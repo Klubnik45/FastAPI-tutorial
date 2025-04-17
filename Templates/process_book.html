@@ -1,3 +1,4 @@
+<h2>{{title}}</h2>
 <input type="text" name="title" placeholder="book title">
 <input type="text" name="author" placeholder="book author">
 <input type="text" name="isbn" placeholder="book isbn">
@@ -9,7 +10,7 @@
 <span
     hx-get="/books"
     hx-trigger="click"
-    hx-on::after-request="this.reset(); event.target.parentElement.classList.add('hide-page');">Close</span>
+    hx-on::after-request="this.reset(); event.target.parentElement.classList.add('hide-page');">X</span>
 
 <script>
     /*addCloseBtn = document.querySelector("#add-book-form span");      
