@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap');
+
 :root {
     --black: #000000ff;
     --bole: #764134ff;
@@ -17,7 +19,6 @@
 }
 
 body {
-    position: relative;
     background-color: var(--french-gray);
     width: 100vw;
     min-height: 100vh;
@@ -25,6 +26,7 @@ body {
     flex-flow: column;
     justify-content: space-between;
     align-items: center;
+    font-family: "Roboto", sans-serif;
 }
 
 #global-header, #global-footer{
@@ -36,10 +38,20 @@ body {
 
 #global-header{
     padding: 2.5vmax 5vmax;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-bottom: solid 1px var(--bole);
+}
+
+#global-header h1{
+    margin-right: 1vmax;
+
 }
 
 #global-footer{
     padding: 1.5vmax 0;
+    border-top: solid 1px var(--bole);
 }
 
 #book-list{
@@ -52,6 +64,7 @@ body {
     justify-content: space-evenly;
     flex-wrap: wrap;
     margin: 1vmax 0;
+    position: relative;
 }
 
 .book{
@@ -69,41 +82,38 @@ body {
 }
 
 #add-book, [id^="update-book"]{
-    position: absolute;
-    top: 0;
-    left: 0;
+    color: white;
 }
 
-#add-book-form{
-    background-color: rgb(81, 143, 109);
+#add-book-form, [id^="update-book-form"]{
     margin: 0 auto;
     padding-top: 10vh;
 }
 
-#add-book-form input{
+#add-book-form input, [id^="update-book-form"] input{
     display: block;
     margin: 2.5vh auto;
     width: 20%;
     height: 4.5vh;
     border-radius: 10px;
     text-align: center;
-    border: solid 2px rgb(36, 110, 41);
-    background-color: rgb(153, 168, 154);
+    border: solid 2px;
 }
 
-#add-book-form button{
+#add-book-form button, [id^="update-book-form"] button{
     display: block;
     margin: 5vh auto;
     border-radius: 10px;
     text-align: center;
     padding: 1vw 3vw;
     text-transform: uppercase;
+    color: white;
+    border: solid 2px white;
+    cursor: pointer;
 }
 
-#add-book-form span{
-    position: absolute;
+#add-book-form span, [id^="update-book-form"] span{
     right: 2.5vw;
-    top: 2.5vw;
     font-weight: bold;
     font-size: 125%;
     border-radius: 50%;
@@ -115,12 +125,11 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
+    border: solid 2px white;
+    cursor: pointer;
 }
 
 #add-book-form, [id^="update-book-form"]{
-    position: absolute;
-    top: 0;
-    left: 0;
     width: 100vw;
     height: 100vh;
 }
@@ -128,6 +137,11 @@ body {
 #closeBtn{
     background-color: white;
     padding: 1rem;
+}
+
+#add-book-form h2, #update-book-form h2{
+    text-align: center;
+    margin-bottom: 5vh;
 }
 
 .show-page{
@@ -159,14 +173,116 @@ li:nth-child(even) .book-cover{
     background-color: blue;
 }
 
+li:nth-child(even) .expandable{
+    background-color: rgb(171, 154, 254);
+}
+
 li:nth-child(3n) .book-cover{
     background-color: red;
+}
+
+li:nth-child(3n) .expandable{
+    background-color: rgb(231, 84, 84);
 }
 
 li:nth-child(odd) .book-cover{
     background-color: greenyellow;
 }
 
+li:nth-child(odd) .expandable{
+    background-color: rgb(205, 237, 156);
+}
+
 .book h3{
     line-height: 1.1;
 }
+
+#add-book-form{
+    background-color: #768161;
+}
+
+#add-book-form input{
+    border-color: #5B644B;
+    background-color: #D9DDD1;
+}
+
+#add-book-form button{
+    background-color: #909B7A;
+}
+
+[id^="update-book-form"]{
+    background-color: #764134ff;
+}
+
+[id^="update-book-form"] input{
+    border-color: #ad8350ff;
+    background-color: #D9DDD1;
+}
+
+[id^="update-book-form"] button{
+    background-color: #764134ff;
+}
+
+input[type="search"] {
+    width: 40vw;
+    padding: 1vmin;
+    border-radius: 20px;
+    margin: 1.5vmax 0;
+    margin-right: 1vmax;
+    text-align: center;
+}
+
+#searchBtn, #addBtn{
+    border: solid 2px white;
+    color: var(--chamoisee);
+    background-color: white;
+    padding: 1vmin 2vmin;
+    border-radius: 5px;
+    margin-right: 1vmax;
+    cursor: pointer;
+}
+
+.expandable {
+    background: #fff;
+    overflow: hidden;
+    color: #000;
+    background-color: red;
+    display: none;
+    transition: all .5s ease-in-out;
+    transform-origin: left top;
+    transform: scaleY(0);
+    width: 90vw;
+    height: 35%;
+    box-shadow: inset 2px 1px 3px rgba(0, 0, 0, 0.5);
+  }
+   
+   .expandable:target {
+    transform: scaleY(1);
+    display: block;
+    margin-top: 15%;
+  }
+
+  :is(li):has(> .expandable:target) {
+    z-index: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(255, 0, 0, 0);
+    position: absolute;
+    left: 0;
+    top: 0;
+  }
+
+  :is(a):has(+ .expandable:target) {
+    position: absolute;
+    z-index: 2000;
+    left: 5%;
+    top:  25%;
+  }
+
+  .book >a{
+    color: black;
+    display: flex;
+    flex-flow: column;
+    justify-content: start;
+    align-items: center;
+  }

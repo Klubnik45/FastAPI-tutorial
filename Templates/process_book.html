@@ -10,7 +10,7 @@
 <span
     hx-get="/books"
     hx-trigger="click"
-    hx-on::after-request="this.reset(); event.target.parentElement.classList.add('hide-page');">X</span>
+    hx-on::after-request="event.target.parentElement.classList.add('hide-page');">X</span>
 
 <script>
     /*addCloseBtn = document.querySelector("#add-book-form span");      

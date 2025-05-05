@@ -1,11 +1,21 @@
 {%for book in books%}
 <li class="book">
+    <a href="#book-card-{{book.bookID}}">
     <div class="book-cover">
         <div>Book</div>
     </div>
+    
     <h3>{{book.title}}</h3>
     <p>{{book.author}}</p>
-    <p>{{book.bookID}}</p>
+    </a>
+
+    <div class="expandable" id="book-card-{{book.bookID}}">
+        <p><span>Author:</span>{{book.author}}</p>
+        <p><span>Reader rating:</span>{{book.average_rating}}</p>
+        <p><span>Pages:</span>{{book.num_pages}}</p>
+        <p><span>Publication Date:</span>{{book.publication_date}}</p>
+        <p><span>Publisher:</span>{{book.publisher}}</p>
+
     <button
         class="update-btn"
         hx-get="/books/update"
@@ -26,8 +36,9 @@
             class="hide-page"
             hx-put="/books/update/{{book.bookID}}"
             hx-target="#book-list"
-            hx-on::after-request="this.reset(); event.target.classList.add('hide-page');"
+            hx-on::after-request="event.target.classList.add('hide-page');"
             hx-on::after-settle="event.target.classList.remove('hide-page');"></form>
+    </div>
     </div>
 </li>
 {%endfor%}

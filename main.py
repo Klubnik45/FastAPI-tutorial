@@ -50,7 +50,7 @@ async def list_books(request: Request, hx_request: Annotated[str | None, Header(
 
 @app.get("/books/add", response_class= HTMLResponse)
 async def add_book_form(request: Request, hx_request: Annotated[str | None, Header()] = None):
-    return templates.TemplateResponse(request= request, name="process_book.html", title = "Add New Book")
+    return templates.TemplateResponse(request= request, name="process_book.html", context= {"title": "Add New Book"})
 
 
 @app.post("/books/add", response_class= HTMLResponse)
@@ -77,7 +77,7 @@ async def update_book(request: Request, book_id:str, title: Annotated[str, Form(
 
 @app.get("/books/update", response_class= HTMLResponse)
 async def update_book_form(request: Request, hx_request: Annotated[str | None, Header()] = None):
-    return templates.TemplateResponse(request= request, name="process_book.html")
+    return templates.TemplateResponse(request= request, name="process_book.html", context= {"title": "Update Book"})
 
 
 @app.delete("/books/delete/{book_id}", response_class= HTMLResponse)

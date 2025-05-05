@@ -9,12 +9,17 @@
 </head>
 <body>
     <header id="global-header">
-        <h1>Welcome my friend!</h1>
+        <h1>MY HOME LIBRARY</h1>
+        <form action=""
+            id="search-form">
+            <input type="search" placeholder="search">
+            <button id="searchBtn">SEARCH</button>
+        </form>
         <button
             id="addBtn"
             hx-get="/books/add"
             hx-target="#add-book-form"
-            hx-trigger="click">Add book</button>
+            hx-trigger="click">ADD BOOK</button>
     </header>
 
     <div id="add-book">
@@ -24,7 +29,7 @@
             hx-post="/books/add"
             hx-swap="innerHTML"
             hx-target="#book-list"
-            hx-on::after-request="this.reset(); event.target.classList.add('hide-page');"
+            hx-on::after-request="event.target.classList.add('hide-page');"
             hx-on::after-settle="event.target.classList.remove('hide-page');"></form>
     </div>
 
