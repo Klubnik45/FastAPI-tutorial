@@ -10,25 +10,36 @@
     </a>
 
     <div class="expandable" id="book-card-{{book.bookID}}">
-        <p><span>Author:</span>{{book.author}}</p>
-        <p><span>Reader rating:</span>{{book.average_rating}}</p>
-        <p><span>Pages:</span>{{book.num_pages}}</p>
-        <p><span>Publication Date:</span>{{book.publication_date}}</p>
-        <p><span>Publisher:</span>{{book.publisher}}</p>
+        <span
+            hx-get="/"    
+            hx-trigger="click"
+            hx-swap="outerHTML"
+            hx-target="body">X
+        </span>
+        <div class="info-group">
+            <p><span>Author:</span>{{book.author}}</p>
+            <p><span>Reader rating:</span>{{book.average_rating}}</p>
+            <p><span>Pages:</span>{{book.num_pages}}</p>
+            <p><span>Publication Date:</span>{{book.publication_date}}</p>
+            <p><span>Publisher:</span>{{book.publisher}}</p>
+        </div>
+        
+    <div class="group-btn">
+        <button
+            class="update-btn"
+            hx-get="/books/update"
+            hx-swap="innerHTML"
+            hx-target="#update-book-form{{book.bookID}}"
+            hx-trigger="click"
+            hx-on::after-request="document.querySelector('#update-book-form{{book.bookID}}').classList.remove('hide-page');">Update book</button>
 
-    <button
-        class="update-btn"
-        hx-get="/books/update"
-        hx-swap="innerHTML"
-        hx-target="#update-book-form{{book.bookID}}"
-        hx-trigger="click">Update book</button>
-
-    <button
-        hx-delete="/books/delete/{{book.bookID}}"
-        hx-swap="innerHTML"
-        hx-target="#book-list"
-        hx-trigger="click"
-        hx-confirm="Are you sure you wish to delete this book?">Delete book</button>
+        <button
+            hx-delete="/books/delete/{{book.bookID}}"
+            hx-swap="innerHTML"
+            hx-target="#book-list"
+            hx-trigger="click"
+            hx-confirm="Are you sure you wish to delete this book?">Delete book</button>
+    </div>
 
     <div id="update-book{{book.bookID}}">
         <form
