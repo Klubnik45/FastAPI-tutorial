@@ -6,7 +6,7 @@
     </div>
     
     <h3>{{book.title}}</h3>
-    <p>{{book.author}}</p>
+    <p>{{book.authors}}</p>
     </a>
 
     <div class="expandable" id="book-card-{{book.bookID}}">
@@ -17,7 +17,7 @@
             hx-target="body">X
         </span>
         <div class="info-group">
-            <p><span>Author:</span>{{book.author}}</p>
+            <p><span>Authors:</span>{{book.authors}}</p>
             <p><span>Reader rating:</span>{{book.average_rating}}</p>
             <p><span>Pages:</span>{{book.num_pages}}</p>
             <p><span>Publication Date:</span>{{book.publication_date}}</p>

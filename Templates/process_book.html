@@ -1,6 +1,6 @@
 <h2>{{title}}</h2>
 <input type="text" name="title" placeholder="book title">
-<input type="text" name="author" placeholder="book author">
+<input type="text" name="authors" placeholder="book authors">
 <input type="text" name="isbn" placeholder="book isbn">
 <input type="text" name="language_code" placeholder="book language_code">
 <input type="text" name="num_pages" placeholder="book num_pages">
@@ -11,17 +11,3 @@
     hx-get="/books"
     hx-trigger="click"
     hx-on::after-request="event.target.parentElement.classList.add('hide-page');">X</span>
-
-<script>
-    /*addCloseBtn = document.querySelector("#add-book-form span");      
-    addSaveBtn = document.querySelector("#add-book-form button");
-    console.log(closeBtn, addCloseBtn)
-
-    addCloseBtn.addEventListener("click", function(event){
-        event.target.parentElement.parentElement.classList.add("hide-page");
-    });
-
-    addSaveBtn.addEventListener("click", function(event){
-        event.target.parentElement.parentElement.classList.add("hide-page");
-    });*/
-</script>

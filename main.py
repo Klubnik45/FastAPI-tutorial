@@ -5,36 +5,33 @@ from fastapi.templating import Jinja2Templates
 from fastapi.encoders import jsonable_encoder
 from uuid import uuid4
 from typing import Annotated
+import json
 app = FastAPI() #Создали API
 templates = Jinja2Templates(directory= "Templates") #Указали, где находятся html файлы
 app.mount("/static", StaticFiles(directory= "static"), name = "static") #Указали, где находятся статические файлы(картинки и т.д.)
 
+with open("Books.json", 'r', encoding="utf8") as jsonfile:
+    db = json.load(jsonfile)
+
 class Book:
-    def __init__(self, title, author, isbn, language_code, num_pages, publication_date, publisher):
-        self.bookID = uuid4()
+    def __init__(self, bookID, title, authors, isbn, isbn13, language_code, num_pages, text_reviews_count, publication_date, publisher):
+        self.bookID:int = bookID
         self.title:str = title
-        self.author:str = author
+        self.authors:str = authors
         self.average_rating:int = 0
         self.isbn:str = isbn
+        self.isbn13:str = isbn13
         self.language_code:str = language_code
         self.num_pages:int = num_pages
         self.ratings_count:int = 0
+        self.text_reviews_count:int = text_reviews_count
         self.publication_date:str = publication_date
         self.publisher:str = publisher
 
-fake_db = [Book("Harry Potter and the Half-Blood Prince (Harry Potter  #6)", "J.K. Rowling", "0439785960", "eng", 652, "9/16/2006", "Scholastic Inc."),
-           Book("The Power of One: The Solo Play for Playwrights  Actors  and Directors", "Louis E. Catron", "0325001537", "eng", 240, "2/7/2000", "Heinemann Drama"),
-           Book("Dinner with Anna Karenina", "Gloria Goldreich", "0778322270", "eng", 360, "1/28/2006", "Mira Books"), Book("Harry Potter and the Half-Blood Prince (Harry Potter  #6)", "J.K. Rowling", "0439785960", "eng", 652, "9/16/2006", "Scholastic Inc."),
-           Book("The Power of One: The Solo Play for Playwrights  Actors  and Directors", "Louis E. Catron", "0325001537", "eng", 240, "2/7/2000", "Heinemann Drama"),
-           Book("Dinner with Anna Karenina", "Gloria Goldreich", "0778322270", "eng", 360, "1/28/2006", "Mira Books"), Book("Harry Potter and the Half-Blood Prince (Harry Potter  #6)", "J.K. Rowling", "0439785960", "eng", 652, "9/16/2006", "Scholastic Inc."),
-           Book("The Power of One: The Solo Play for Playwrights  Actors  and Directors", "Louis E. Catron", "0325001537", "eng", 240, "2/7/2000", "Heinemann Drama"),
-           Book("Dinner with Anna Karenina", "Gloria Goldreich", "0778322270", "eng", 360, "1/28/2006", "Mira Books"), Book("Harry Potter and the Half-Blood Prince (Harry Potter  #6)", "J.K. Rowling", "0439785960", "eng", 652, "9/16/2006", "Scholastic Inc."),
-           Book("The Power of One: The Solo Play for Playwrights  Actors  and Directors", "Louis E. Catron", "0325001537", "eng", 240, "2/7/2000", "Heinemann Drama"),
-           Book("Dinner with Anna Karenina", "Gloria Goldreich", "0778322270", "eng", 360, "1/28/2006", "Mira Books"), Book("Harry Potter and the Half-Blood Prince (Harry Potter  #6)", "J.K. Rowling", "0439785960", "eng", 652, "9/16/2006", "Scholastic Inc."),
-           Book("The Power of One: The Solo Play for Playwrights  Actors  and Directors", "Louis E. Catron", "0325001537", "eng", 240, "2/7/2000", "Heinemann Drama"),
-           Book("Dinner with Anna Karenina", "Gloria Goldreich", "0778322270", "eng", 360, "1/28/2006", "Mira Books"), Book("Harry Potter and the Half-Blood Prince (Harry Potter  #6)", "J.K. Rowling", "0439785960", "eng", 652, "9/16/2006", "Scholastic Inc."),
-           Book("The Power of One: The Solo Play for Playwrights  Actors  and Directors", "Louis E. Catron", "0325001537", "eng", 240, "2/7/2000", "Heinemann Drama"),
-           Book("Dinner with Anna Karenina", "Gloria Goldreich", "0778322270", "eng", 360, "1/28/2006", "Mira Books")]
+book_db = []
+for r in db:
+    book_db.append(Book(r["bookID"], r["title"], r["authors"], r["isbn"], r["isbn13"], r["language_code"], r["num_pages"], r["text_reviews_count"], r["publication_date"], r["publisher"]))
+
 
 @app.get("/", response_class= HTMLResponse) #Запрос на получение информации (отправляем get запрос)
 async def read_root(request: Request): #async превращает функцию в асинхронную, т.е. функцию которая может ждать
@@ -44,8 +41,8 @@ async def read_root(request: Request): #async превращает функци�
 @app.get("/books", response_class= HTMLResponse)
 async def list_books(request: Request, hx_request: Annotated[str | None, Header()] = None):
     if hx_request:
-        return templates.TemplateResponse(request= request, name= "book_list.html", context= {"books": fake_db})
-    return JSONResponse(content= jsonable_encoder(fake_db))
+        return templates.TemplateResponse(request= request, name= "book_list.html", context= {"books": book_db})
+    return JSONResponse(content= jsonable_encoder(book_db))
 
 
 @app.get("/books/add", response_class= HTMLResponse)
@@ -55,24 +52,24 @@ async def add_book_form(request: Request, hx_request: Annotated[str | None, Head
 
 @app.post("/books/add", response_class= HTMLResponse)
 async def add_book(request: Request, title: Annotated[str, Form()], author: Annotated[str, Form()], isbn: Annotated[str, Form()], language_code: Annotated[str, Form()], num_pages: Annotated[int, Form()], publication_date: Annotated[str, Form()], publisher: Annotated[str, Form()]):
-    fake_db.append(Book(title, author, isbn, language_code, num_pages, publication_date, publisher))
-    print(fake_db[-1].title)
-    return templates.TemplateResponse(request= request, name= "book_list.html", context= {"books": fake_db})
+    book_db.append(Book(title, author, isbn, language_code, num_pages, publication_date, publisher))
+    print(book_db[-1].title)
+    return templates.TemplateResponse(request= request, name= "book_list.html", context= {"books": book_db})
 
 
 @app.put("/books/update/{book_id}", response_class=HTMLResponse)
-async def update_book(request: Request, book_id:str, title: Annotated[str, Form()], author: Annotated[str, Form()], isbn: Annotated[str, Form()], language_code: Annotated[str, Form()], num_pages: Annotated[int, Form()], publication_date: Annotated[str, Form()], publisher: Annotated[str, Form()]):
-    for index, book in enumerate(fake_db):
+async def update_book(request: Request, book_id:str, title: Annotated[str, Form()], authors: Annotated[str, Form()], isbn: Annotated[str, Form()], language_code: Annotated[str, Form()], num_pages: Annotated[int, Form()], publication_date: Annotated[str, Form()], publisher: Annotated[str, Form()]):
+    for index, book in enumerate(book_db):
         if str(book.bookID) == book_id:
             book.title = title
-            book.author = author
+            book.authors = authors
             book.isbn = isbn
             book.language_code = language_code
             book.num_pages = num_pages
             book.publication_date = publication_date
             book.publisher = publisher
             break
-    return templates.TemplateResponse(request= request, name= "book_list.html", context= {"books": fake_db})
+    return templates.TemplateResponse(request= request, name= "book_list.html", context= {"books": book_db})
     
 
 @app.get("/books/update", response_class= HTMLResponse)
@@ -82,11 +79,11 @@ async def update_book_form(request: Request, hx_request: Annotated[str | None, H
 
 @app.delete("/books/delete/{book_id}", response_class= HTMLResponse)
 async def delete_book(request: Request, book_id: str):
-    for index, book in enumerate(fake_db):
+    for index, book in enumerate(book_db):
         if str(book.bookID) == book_id:
-            del fake_db[index]
+            del book_db[index]
             break
-    return templates.TemplateResponse(request= request, name="book_list.html", context= {"books": fake_db})
+    return templates.TemplateResponse(request= request, name="book_list.html", context= {"books": book_db})
 
 
 '''def get_full_name(firstname: str, lastname: str)->str: #пример создания функции

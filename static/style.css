@@ -86,14 +86,13 @@ body {
 }
 
 #add-book-form, [id^="update-book-form"]{
-    margin: 0 auto;
+    display: flex;
     padding-top: 10vh;
-
 }
 
 #add-book-form input, [id^="update-book-form"] input{
-    display: block;
-    margin: 2.5vh auto;
+    display: flex;
+    /*margin: 2.5vh auto;*/
     width: 20%;
     height: 4.5vh;
     border-radius: 10px;
