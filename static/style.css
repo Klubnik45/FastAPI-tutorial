@@ -86,7 +86,7 @@ body {
 }
 
 #add-book-form, [id^="update-book-form"]{
-    display: flex;
+    /*display: flex;*/
     padding-top: 10vh;
 }
 
@@ -248,21 +248,21 @@ input[type="search"] {
     background: #fff;
     position: relative;
     overflow: visible;
-    color: #000;
+    color: #fff;
     background-color: red;
     display: none;
     transition: all .5s ease-in-out;
     transform-origin: left top;
     transform: scaleY(0);
     width: 90vw;
-    height: 50vh;
+    min-width: 50vh;
     box-shadow: inset 2px 1px 3px rgba(0, 0, 0, 0.5);
   }
    
    .expandable:target {
     transform: scaleY(1);
     display: flex;
-    flex-flow: column-reverse;
+    /*flex-flow: column-reverse;*/
     justify-content: space-evenly;
     align-items: flex-end;
     margin-top: 15%;
@@ -296,7 +296,8 @@ input[type="search"] {
 
 .group-btn{
     width: 60%;
-    margin-bottom: 20%;
+    /*margin-bottom: 20%;*/
+    align-self: center;
 }
 
 .group-btn button{
@@ -338,4 +339,19 @@ input[type="search"] {
     position: absolute;
     top: 0;
     left: 0;
+}
+
+.close-span{
+    position: absolute;
+    top: 1.5vmax;
+    right: 1.5vmax;
+    border-radius: 50%;
+    color: white;
+    border: solid 2px white;
+    font-weight: bold;
+    width: 2vmax;
+    height: 2vmax;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
