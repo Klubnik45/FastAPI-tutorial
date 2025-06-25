@@ -87,12 +87,12 @@ body {
 
 #add-book-form, [id^="update-book-form"]{
     /*display: flex;*/
-    padding-top: 10vh;
+    padding-top: 3vh;
 }
 
 #add-book-form input, [id^="update-book-form"] input{
     display: flex;
-    /*margin: 2.5vh auto;*/
+    margin: 2.5vh auto;
     width: 20%;
     height: 4.5vh;
     border-radius: 10px;
@@ -213,7 +213,7 @@ li:nth-child(odd) .expandable{
 [id^="update-book-form"]{
     background-color: #764134ff;
     width: 90vw;
-    height: 50vh;
+    max-height: 75vh;
 }
 
 [id^="update-book-form"] input{
@@ -354,4 +354,11 @@ input[type="search"] {
     display: flex;
     justify-content: center;
     align-items: center;
+}
+
+#add-book{
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 3000;
 }

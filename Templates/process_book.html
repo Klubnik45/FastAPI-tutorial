@@ -8,6 +8,7 @@
 <input type="text" name="publisher" placeholder="book publisher">
 <button id="saveBtn" type="submit">Save</button>
 <span
+    class="close-span"
     hx-get="/books"
     hx-trigger="click"
-    hx-on::after-request="event.target.parentElement.classList.add('hide-page');">X</span>
+    hx-on:click="alert('clicked')">X</span>
