@@ -46,9 +46,10 @@
         <form
             id="update-book-form{{book.bookID}}"
             class="hide-page"
-            hx-put="/books/update/{{book.bookID}}"
+            hx-swap="outerHTML"
             hx-target="#book-list"
-            hx-on::after-request="event.target.classList.add('hide-page');"
+            hx-put="/books/update/{{book.bookID}}"
+            hx-trigger="submit"
             hx-on::after-settle="event.target.classList.remove('hide-page');"></form>
     </div>
     </div>

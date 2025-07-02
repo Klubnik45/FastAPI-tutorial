@@ -6,9 +6,8 @@
 <input type="text" name="num_pages" placeholder="book num_pages">
 <input type="text" name="publication_date" placeholder="book publication_date">
 <input type="text" name="publisher" placeholder="book publisher">
-<button id="saveBtn" type="submit">Save</button>
+<button class="saveBtn" type="submit">Save</button>
 <span
     class="close-span"
-    hx-get="/books"
     hx-trigger="click"
-    hx-on:click="alert('clicked')">X</span>
+    hx-on:click="event.target.parentElement.classList.add('hide-page');">X</span>
