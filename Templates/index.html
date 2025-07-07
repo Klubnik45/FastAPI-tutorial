@@ -10,7 +10,10 @@
     <header id="global-header">
         <h1>MY HOME LIBRARY</h1>
         <form action=""
-            id="search-form">
+            id="search-form"
+            hx-post="/search"
+            hx-swap="innerHTML"
+            hx-target="#book-list">
             <input type="search" name="search" placeholder="search">
             <button id="searchBtn">SEARCH</button>
         </form>

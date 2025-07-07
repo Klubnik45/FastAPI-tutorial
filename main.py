@@ -86,5 +86,18 @@ async def delete_book(request: Request, book_id: str):
     return templates.TemplateResponse(request= request, name="book_list.html", context= {"books": book_db})
 
 
+@app.post("/search", response_class= HTMLResponse)
+async def search(request: Request, search: Annotated[str, Form()]):
+    search_res = []
+    for index, book in enumerate(book_db):
+        if str(book.title) == search:
+            search_res.append(book)
+        if str(book.authors) == search:
+            search_res.append(book)
+        if str(book.publication_date) == str(search):
+            search_res.append(book)
+    print(search_res)
+    return templates.TemplateResponse(request= request, name="book_list.html", context= {"books": search_res})
+
 '''def get_full_name(firstname: str, lastname: str)->str: #пример создания функции
     return f"{firstname} {lastname}"'''
