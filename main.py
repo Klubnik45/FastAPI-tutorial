@@ -94,9 +94,8 @@ async def search(request: Request, search: Annotated[str, Form()]):
             search_res.append(book)
         if str(book.authors) == search:
             search_res.append(book)
-        if str(book.publication_date) == str(search):
+        if str(book.publication_date).split("/")[-1] == str(search):
             search_res.append(book)
-    print(search_res)
     return templates.TemplateResponse(request= request, name="book_list.html", context= {"books": search_res})
 
 '''def get_full_name(firstname: str, lastname: str)->str: #пример создания функции

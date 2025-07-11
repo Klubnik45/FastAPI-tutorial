@@ -31,9 +31,8 @@
             hx-get="/books/update"
             hx-swap="innerHTML"
             hx-target="#update-book-form{{book.bookID}}"
-            hx-trigger="click"
-            hx-on::after-request="document.querySelector('#update-book-form{{book.bookID}}').classList.remove('hide-page');">Update book</button>
-
+            hx-trigger="click">Update book</button>
+            
         <button
             hx-delete="/books/delete/{{book.bookID}}"
             hx-swap="innerHTML"
@@ -46,11 +45,9 @@
         <form
             id="update-book-form{{book.bookID}}"
             class="hide-page"
-            hx-swap="outerHTML"
-            hx-target="#book-list"
             hx-put="/books/update/{{book.bookID}}"
-            hx-trigger="submit"
-            hx-on::after-settle="event.target.classList.remove('hide-page');"></form>
+            hx-on::after-request="event.target.classList.add('hide-page');"
+            hx-on::after-settle="event.target.classList.remove('hide-page');">Update book</form>
     </div>
     </div>
 </li>
