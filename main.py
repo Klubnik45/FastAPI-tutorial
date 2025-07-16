@@ -51,18 +51,18 @@ async def add_book_form(request: Request, hx_request: Annotated[str | None, Head
 
 
 @app.post("/books/add", response_class= HTMLResponse)
-async def add_book(request: Request, title: Annotated[str, Form()], author: Annotated[str, Form()], isbn: Annotated[str, Form()], isbn13: Annotated[str, Form()], language_code: Annotated[str, Form()], num_pages: Annotated[int, Form()], text_reviews_count: Annotated[int, Form()], publication_date: Annotated[str, Form()], publisher: Annotated[str, Form()]):
+async def add_book(request: Request, bookID: Annotated[int, Form()], title: Annotated[str, Form()], author: Annotated[str, Form()], isbn: Annotated[str, Form()], isbn13: Annotated[str, Form()], language_code: Annotated[str, Form()], num_pages: Annotated[int, Form()], text_reviews_count: Annotated[int, Form()], publication_date: Annotated[str, Form()], publisher: Annotated[str, Form()]):
     db_len = len(book_db) + 1
     print(db_len)
-    book_db.append(Book(db_len, title, author, isbn, isbn13, language_code, num_pages, text_reviews_count, publication_date, publisher))
+    book_db.append(Book(bookID, title, author, isbn, isbn13, language_code, num_pages, text_reviews_count, publication_date, publisher))
     print(book_db[-1].title)
     return templates.TemplateResponse(request= request, name= "book_list.html", context= {"books": book_db})
 
 
 @app.put("/books/update/{book_id}", response_class=HTMLResponse)
-async def update_book(request: Request, book_id:str, title: Annotated[str, Form()], authors: Annotated[str, Form()], isbn: Annotated[str, Form()], isbn13: Annotated[str, Form()], language_code: Annotated[str, Form()], num_pages: Annotated[int, Form()], text_reviews_count: Annotated[int, Form()], publication_date: Annotated[str, Form()], publisher: Annotated[str, Form()]):
+async def update_book(request: Request, bookID: Annotated[int, Form()], title: Annotated[str, Form()], authors: Annotated[str, Form()], isbn: Annotated[str, Form()], isbn13: Annotated[str, Form()], language_code: Annotated[str, Form()], num_pages: Annotated[int, Form()], text_reviews_count: Annotated[int, Form()], publication_date: Annotated[str, Form()], publisher: Annotated[str, Form()]):
     for index, book in enumerate(book_db):
-        if str(book.bookID) == book_id:
+        if str(book.bookID) == bookID:
             book.title = title
             book.authors = authors
             book.isbn = isbn
