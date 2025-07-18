@@ -1,3 +1,12 @@
+{%if books | length < 1%}
+<p>Nothing is found
+    <button id="houme-btn"
+            hx-get="/books"
+            hx-swap="innerHTML"
+            hx-target="#book-list">Go to houme page</button>
+</p>
+{%else%}
+
 {%for book in books%}
 <li class="book">
     <a href="#book-card-{{book.bookID}}">
@@ -52,3 +61,4 @@
     </div>
 </li>
 {%endfor%}
+{%endif%}

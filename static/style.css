@@ -362,3 +362,12 @@ input[type="search"] {
     left: 0;
     z-index: 3000;
 }
+
+#houme-btn{
+    color: #fff;
+    background-color: #ad8350ff;
+    border: solid 1px #764134ff;
+    padding: 1vmin 1.5vmin;
+    border-radius: 20px;
+    text-transform: uppercase;
+}

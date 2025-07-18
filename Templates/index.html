@@ -13,7 +13,8 @@
             id="search-form"
             hx-post="/search"
             hx-swap="innerHTML"
-            hx-target="#book-list">
+            hx-target="#book-list"
+            hx-on::after-request="event.target.reset();">
             <input type="search" name="search" placeholder="search">
             <button id="searchBtn">SEARCH</button>
         </form>
