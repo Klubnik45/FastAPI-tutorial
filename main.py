@@ -62,7 +62,8 @@ async def add_book(request: Request, bookID: Annotated[int, Form()], title: Anno
 @app.put("/books/update/{book_id}", response_class=HTMLResponse)
 async def update_book(request: Request, bookID: Annotated[int, Form()], title: Annotated[str, Form()], authors: Annotated[str, Form()], isbn: Annotated[str, Form()], isbn13: Annotated[str, Form()], language_code: Annotated[str, Form()], num_pages: Annotated[int, Form()], text_reviews_count: Annotated[int, Form()], publication_date: Annotated[str, Form()], publisher: Annotated[str, Form()]):
     for index, book in enumerate(book_db):
-        if str(book.bookID) == bookID:
+        print(book.bookID, book.bookID == bookID, type(bookID), type(book.bookID), bookID, book.bookID)
+        if book.bookID == bookID:
             book.title = title
             book.authors = authors
             book.isbn = isbn

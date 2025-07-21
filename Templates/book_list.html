@@ -55,6 +55,8 @@
             id="update-book-form{{book.bookID}}"
             class="hide-page"
             hx-put="/books/update/{{book.bookID}}"
+            hx-swap="innerHTML"
+            hx-target="#book-list"
             hx-on::after-request="event.target.classList.add('hide-page');"
             hx-on::after-settle="event.target.classList.remove('hide-page');">Update book</form>
     </div>
