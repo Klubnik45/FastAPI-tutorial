@@ -27,6 +27,7 @@
             hx-target="body">X
         </span>
         <div class="info-group">
+            <p><span>BookID:</span>{{book.bookID}}</p>
             <p><span>Authors:</span>{{book.authors}}</p>
             <p><span>Reader rating:</span>{{book.average_rating}}</p>
             <p><span>Pages:</span>{{book.num_pages}}</p>
@@ -57,10 +58,14 @@
             hx-put="/books/update/{{book.bookID}}"
             hx-swap="innerHTML"
             hx-target="#book-list"
-            hx-on::after-request="event.target.classList.add('hide-page');"
             hx-on::after-settle="event.target.classList.remove('hide-page');">Update book</form>
     </div>
     </div>
 </li>
 {%endfor%}
 {%endif%}
+
+
+
+<!--hx-on::after-request="event.target.classList.add('hide-page');"
+hx-on::after-settle="event.target.classList.remove('hide-page');-->
