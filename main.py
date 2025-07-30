@@ -1,3 +1,4 @@
+import uvicorn
 from fastapi import FastAPI, Request, Header, Form
 from fastapi.responses import HTMLResponse, JSONResponse
 from fastapi.staticfiles import StaticFiles
@@ -62,7 +63,6 @@ async def add_book(request: Request, bookID: Annotated[int, Form()], title: Anno
 @app.put("/books/update/{book_id}", response_class=HTMLResponse)
 async def update_book(request: Request, bookID: Annotated[int, Form()], title: Annotated[str, Form()], authors: Annotated[str, Form()], isbn: Annotated[str, Form()], isbn13: Annotated[str, Form()], language_code: Annotated[str, Form()], num_pages: Annotated[int, Form()], text_reviews_count: Annotated[int, Form()], publication_date: Annotated[str, Form()], publisher: Annotated[str, Form()]):
     for index, book in enumerate(book_db):
-        print(book.bookID, book.bookID == bookID, type(bookID), type(book.bookID), bookID, book.bookID)
         if book.bookID == bookID:
             book.title = title
             book.authors = authors
@@ -102,6 +102,10 @@ async def search(request: Request, search: Annotated[str, Form()]):
         if str(book.publication_date).split("/")[-1] == str(search):
             search_res.append(book)
     return templates.TemplateResponse(request= request, name="book_list.html", context= {"books": search_res})
+
+
+if __name__ == "__main__":
+    uvicorn.run(app, host="0.0.0.0", port=8000, timeout_keep_alive=20000)
 
 '''def get_full_name(firstname: str, lastname: str)->str: #пример создания функции
     return f"{firstname} {lastname}"'''

@@ -213,7 +213,7 @@ li:nth-child(odd) .expandable{
 [id^="update-book-form"]{
     background-color: #764134ff;
     width: 90vw;
-    max-height: 75vh;
+    max-height: 100vh!important;
 }
 
 [id^="update-book-form"] input{
