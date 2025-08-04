@@ -106,6 +106,3 @@ async def search(request: Request, search: Annotated[str, Form()]):
 
 if __name__ == "__main__":
     uvicorn.run(app, host="0.0.0.0", port=8000, timeout_keep_alive=20000)
-
-'''def get_full_name(firstname: str, lastname: str)->str: #пример создания функции
-    return f"{firstname} {lastname}"'''
